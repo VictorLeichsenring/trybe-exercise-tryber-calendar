@@ -51,3 +51,22 @@ function btnHolidays() {
     }
   }
 }
+
+//Exercício 3 – Implemente uma função que modifica o texto exibido nos dias que são sextas-feiras
+const buttomFridays = document.getElementById('btn-friday');
+const fridayListDays = [4, 11, 18, 25];
+const fridayElementsList = document.getElementsByClassName('friday');
+buttomFridays.addEventListener('click', btnFridays);
+
+function btnFridays() {
+  for (let i = 0; i < fridayElementsList.length; i += 1) {
+    let element = fridayElementsList[i];
+    if (element.innerText === 'Sextou') {
+      element.innerText = fridayListDays[i];
+    } else {
+      element.innerText =['Sextou'];
+    }
+  }
+}
+
+
