@@ -34,3 +34,20 @@ function createDaysOfMonth() {
   }
 }
 createDaysOfMonth();
+
+
+//Exercício 2 – Implemente uma função que muda a cor de fundo dos dias que possuem a classe "holiday"
+const buttomHolidays = document.getElementById('btn-holiday');
+buttomHolidays.addEventListener('click', btnHolidays);
+function btnHolidays() {
+  let holidays = document.getElementsByClassName('holiday');
+  for (let i = 0; i < holidays.length; i += 1) {
+    let element= holidays[i];
+    let backgroundColor = getComputedStyle(element).backgroundColor;
+    if (backgroundColor == 'rgb(231, 196, 61)') {
+      element.style.backgroundColor = 'rgb(238,238,238)';
+    } else {
+      element.style.backgroundColor = 'rgb(231, 196, 61)';
+    }
+  }
+}
