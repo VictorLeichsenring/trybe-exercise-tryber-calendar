@@ -57,7 +57,6 @@ const buttomFridays = document.getElementById('btn-friday');
 const fridayListDays = [4, 11, 18, 25];
 const fridayElementsList = document.getElementsByClassName('friday');
 buttomFridays.addEventListener('click', btnFridays);
-
 function btnFridays() {
   for (let i = 0; i < fridayElementsList.length; i += 1) {
     let element = fridayElementsList[i];
@@ -69,4 +68,19 @@ function btnFridays() {
   }
 }
 
+//Exercício 4 – Implemente duas funções que criem um efeito de "zoom"
+let daysListElemnt = document.getElementsByClassName('day');
+for (let i = 0; i < daysListElemnt.length; i += 1) {
+  let element = daysListElemnt[i];
+  element.addEventListener('mouseover', dayZoomIn);
+  element.addEventListener('mouseout', dayZoomOut);
+}
+function dayZoomIn (event) {
+  let element = event.target;
+  element.style.fontSize = '30px';
+}
+function dayZoomOut(event) {
+  let element = event.target;
+  element.style.fontSize = '20px';
+}
 
