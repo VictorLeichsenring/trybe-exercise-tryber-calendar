@@ -16,7 +16,6 @@ createDaysOfTheWeek();
 const decemberDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
 // Escreva seu código abaixo.
-
 //Exercício 1 – Crie um calendário dinamicamente
 function createDaysOfMonth() {
   const daysList = document.querySelector('#days');
@@ -84,3 +83,84 @@ function dayZoomOut(event) {
   element.style.fontSize = '20px';
 }
 
+//Exercício 5 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
+let taskClassList = document.getElementsByClassName('task');
+let divProjeto = taskClassList[0];
+let divExercicios = taskClassList[1];
+divProjeto.addEventListener('click', selectTaskProjeto);
+divExercicios.addEventListener('click', selectTaskExercicio);
+let tasksStatus= '';
+let projectDaysElements = [];
+let exerciseDaysElements = [];
+
+function selectTaskProjeto(event) {
+  if (tasksStatus === 'project') {
+    tasksStatus = '';
+    event.target.classList.remove('selected');
+    divExercicios.classList.remove('selected');
+  } else {
+    tasksStatus = 'project';
+    event.target.classList.add('selected');
+  }
+}
+function selectTaskExercicio(event) {
+  if (tasksStatus === 'exercise') {
+    tasksStatus = '';
+    event.target.classList.remove('selected');
+    divProjeto.classList.remove('selected');
+  } else {
+    tasksStatus = 'exercise';
+    event.target.classList.add('selected')
+  }
+}
+
+for (let i = 0; i < daysListElemnt.length; i += 1) {
+  let element = daysListElemnt[i];
+  element.addEventListener('click', dayClick);
+}
+
+function dayClick(event) {
+  if (tasksStatus === 'project') {
+    assignProject(event.target);
+  } else if ( tasksStatus === 'exercise') {
+    assignExercise(event.target);
+  }
+}
+
+function assignProject(element) {
+  if (projectDaysElements.includes(element)) {
+    projectDaysElements = projectDaysElements.filter(item => item !== element);
+  } else {
+    if (exerciseDaysElements.includes(element)) {
+      exerciseDaysElements = exerciseDaysElements.filter(item => item !== element);
+    }
+    projectDaysElements.push(element);
+    }
+  colored();
+}
+
+function assignExercise(element) {
+  if (exerciseDaysElements.includes(element)) {
+    exerciseDaysElements = exerciseDaysElements.filter(item => item !== element);
+  } else {
+    if (projectDaysElements.includes(element)) {
+      projectDaysElements = projectDaysElements.filter(item => item !== element);
+    }
+    exerciseDaysElements.push(element);
+    }
+  colored();
+}
+
+function colored() {  
+  for (let i = 0; i < daysListElemnt.length; i += 1) {
+    let element = daysListElemnt[i];
+    if (projectDaysElements.includes(element)) {
+      element.style.color = 'rgb(0, 128, 0)';
+    }
+    else if (exerciseDaysElements.includes(element)) {
+      element.style.color = 'rgb(255, 0, 0)';
+    } else {
+      element.style.color = 'rgb(119,119,119)';
+    }
+  }   
+}
