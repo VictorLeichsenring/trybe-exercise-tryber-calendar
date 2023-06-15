@@ -110,7 +110,7 @@ function selectTaskExercicio(event) {
     divProjeto.classList.remove('selected');
   } else {
     tasksStatus = 'exercise';
-    event.target.classList.add('selected')
+    event.target.classList.add('selected');
   }
 }
 
@@ -163,4 +163,28 @@ function colored() {
       element.style.color = 'rgb(119,119,119)';
     }
   }   
+}
+
+//Exercício 6 – Adicionando compromissos a seu calendário
+const btnAdd = document.getElementById('btn-add');
+btnAdd.addEventListener('click', createEvent);
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter' && event.target.id === 'task-input') {
+    event.preventDefault(); // Evita o comportamento padrão do Enter em um campo de input dentro de um formulário
+    createEvent();
+  }
+});
+
+function createEvent() {
+  const eventInput = document.getElementById('task-input');
+  const taskList = document.getElementById('task-list');
+  const element = document.createElement('li');
+  if (eventInput.value.trim()!== '') {
+    element.innerText = eventInput.value;
+    taskList.appendChild(element);
+    eventInput.value = '';
+  } else {
+    alert('Por favor, insira uma tarefa.');
+  }
 }
